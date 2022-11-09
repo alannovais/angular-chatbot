@@ -1,4 +1,6 @@
 <div class="box border-radius-7 overflow-size">
-    <div class="box-history">&nbsp;</div>
-    <app-chat-send-menssage></app-chat-send-menssage>
+  <div class="box-history" *ngFor="let item of payloadMessages">
+    {{ item.text }}
+  </div>
+  <app-chat-send-menssage (eventSendMessage)="onSendMessage($event)" [text]="textMessage"></app-chat-send-menssage>
 </div>
