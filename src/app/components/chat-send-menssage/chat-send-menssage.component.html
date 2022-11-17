@@ -1,7 +1,4 @@
 <div class="send-area">
-  
-  <div>
-    {{ text }}
-  </div>
-  <button (click)="action()">send</button>
+  <input class="bg-white width-input-send border-radius-7" matInput placeholder="Write somthing..." [(ngModel)]="textInput" (keyup.enter)="action()" />
+  <button (click)="action()" mat-raised-button class="border-radius-7" color="primary">send</button>
 </div>

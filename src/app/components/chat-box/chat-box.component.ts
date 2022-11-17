@@ -11,15 +11,14 @@ export class ChatBoxComponent implements OnInit {
   payloadMessages: PayloadMessage[] = [];
   userActual: User = {
     id: 0,
-    name: '',
+    name: 'bot',
   };
   textMessage: string = '';
 
   constructor() {
-    this.userActual.name = 'Olá, fulano';
     this.payloadMessages.push({
       id: this.userActual.id++,
-      text: this.userActual.name,
+      text: 'Olá, fulano',
       sender: this.userActual,
     });
   }

@@ -5,25 +5,28 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './chat-send-menssage.component.html',
   styleUrls: ['./chat-send-menssage.component.scss'],
 })
-
 export class ChatSendMenssageComponent implements OnInit {
-  @Input() text: String = '';
+  @Input() text: string = '';
   @Output() eventSendMessage: EventEmitter<any> = new EventEmitter();
+  textInput: string = '';
 
   message: any = {
     text: '',
     sender: '',
   };
 
-  constructor() {
+  constructor() {}
+
+  ngOnInit(): void {
+    this.textInput = this.text;
   }
-  
-  ngOnInit(): void {}
-  
+
   action(): void {
-    this.text = 'teste';
-    this.message.text = this.text;
-    this.message.sender = 'Alan';
-    this.eventSendMessage.emit(this.message);
+    if (this.textInput != '') {
+      this.message.text = this.textInput;
+      this.message.sender = 'Alan';
+      this.text = this.textInput = '';
+      this.eventSendMessage.emit(this.message);
+    }
   }
 }

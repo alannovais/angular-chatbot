@@ -1,6 +1,22 @@
-<div class="box border-radius-7 overflow-size">
-  <div class="box-history" *ngFor="let item of payloadMessages">
-    {{ item.text }}
+<div class="bg-white">
+  <div class="box border-radius-7 overflow-size">
+    <div class="bg-white min-heigth-chat">
+      <div class="box-history" *ngFor="let item of payloadMessages">
+        <div *ngIf="item.sender.name == 'bot'; else elseBlock">
+          {{ item.text }}
+        </div>
+        <ng-template #elseBlock>
+          <div style="display: flex; justify-content: flex-end">
+            {{ item.text }}
+          </div>
+        </ng-template>
+      </div>
+    </div>
   </div>
-  <app-chat-send-menssage (eventSendMessage)="onSendMessage($event)" [text]="textMessage"></app-chat-send-menssage>
+  <div class="footer-send">
+    <app-chat-send-menssage
+      (eventSendMessage)="onSendMessage($event)"
+      [text]="textMessage"
+    ></app-chat-send-menssage>
+  </div>
 </div>
