@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PayloadMessage } from 'src/app/interfaces/payload-message';
 
 @Component({
   selector: 'app-chat-send-menssage',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ChatSendMenssageComponent implements OnInit {
   @Input() text: string = '';
-  @Output() eventSendMessage: EventEmitter<any> = new EventEmitter();
+  @Output() eventSendMessage: EventEmitter<PayloadMessage> = new EventEmitter();
   textInput: string = '';
 
   message: any = {

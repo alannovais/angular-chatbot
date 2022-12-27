@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { PayloadMessage } from 'src/app/interfaces/payload-message';
 import { User } from 'src/app/interfaces/user';
 
@@ -7,7 +13,10 @@ import { User } from 'src/app/interfaces/user';
   templateUrl: './chat-box.component.html',
   styleUrls: ['./chat-box.component.scss'],
 })
-export class ChatBoxComponent implements OnInit {
+export class ChatBoxComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scrollMe')
+  private myScrollContainer!: ElementRef;
+
   payloadMessages: PayloadMessage[] = [];
   userActual: User = {
     id: 0,
@@ -23,14 +32,28 @@ export class ChatBoxComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.scrollToBottom();
+  }
 
-  onSendMessage(_emit: any): any {
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  onSendMessage(_emit: PayloadMessage): any {
+    console.log(_emit, 'check');
     this.textMessage = _emit.text;
     this.payloadMessages.push({
       id: this.userActual.id++,
       text: _emit.text,
       sender: _emit.sender,
     });
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 }

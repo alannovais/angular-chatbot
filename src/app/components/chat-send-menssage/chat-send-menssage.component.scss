@@ -12,8 +12,14 @@
 
 .border-radius-7 {
     border-radius: 7px;
+    border: none;
+    padding-left: 1em;
+}
+
+.border-radius-7 :focus {
+    border: none;
 }
 
 .bg-white {
-    background-color: rgb(250, 241, 241);
+    background-color: rgb(240, 242, 199);
 }

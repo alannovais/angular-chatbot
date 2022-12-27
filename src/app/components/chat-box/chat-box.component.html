@@ -1,13 +1,18 @@
 <div class="bg-white">
   <div class="box border-radius-7 overflow-size">
-    <div class="bg-white min-heigth-chat">
-      <div class="box-history" *ngFor="let item of payloadMessages">
-        <div *ngIf="item.sender.name == 'bot'; else elseBlock">
+    <div #scrollMe class="bg-white min-heigth-chat box-history">
+      <div class="" *ngFor="let item of payloadMessages">
+        <div
+          class="bot-message"
+          *ngIf="item.sender.name == 'bot'; else elseBlock"
+        >
           {{ item.text }}
         </div>
         <ng-template #elseBlock>
-          <div style="display: flex; justify-content: flex-end">
-            {{ item.text }}
+          <div style="display: flex; flex-direction: row; justify-content: end;">
+            <div class="actor-message">
+              {{ item.text }}
+            </div>
           </div>
         </ng-template>
       </div>
